@@ -1,5 +1,5 @@
-import 'package:mi_country_picker/mi_country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
 
 class LayoutConfig {
   /// If null, the style will be set to [TextStyle(fontSize: 14)]

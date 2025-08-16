@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mi_country_picker/src/codes.dart';
-import '../mi_country_picker.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
+import 'package:swiper_country_picker/src/codes.dart';
 
 class CountrySelectionBottomSheet extends StatefulWidget {
   /// add your favorites countries
@@ -167,7 +167,7 @@ class _CountrySelectionBottomSheetState
                             Image.asset(
                               color: Colors.grey.shade400,
                               'lib/assets/icons/search.png',
-                              package: 'mi_country_picker',
+                              package: 'swiper_country_picker',
                             ),
                       ),
                       hintText: widget.searchStyle?.hintText ?? "Search",
@@ -259,7 +259,7 @@ class _CountrySelectionBottomSheetState
                     : Clip.hardEdge,
                 child: Image.asset(
                   e.flagUri!,
-                  package: 'mi_country_picker',
+                  package: 'swiper_country_picker',
                   width: widget.layoutConfig?.flagWidth ?? 24,
                   height: widget.layoutConfig?.flagHeight ?? 18,
                   fit: BoxFit.cover,
@@ -324,7 +324,7 @@ class _CountrySelectionBottomSheetState
                     : Clip.hardEdge,
                 child: Image.asset(
                   e.flagUri!,
-                  package: 'mi_country_picker',
+                  package: 'swiper_country_picker',
                   width: widget.layoutConfig?.flagWidth ?? 24,
                   height: widget.layoutConfig?.flagHeight ?? 18,
                   fit: BoxFit.cover,

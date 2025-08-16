@@ -1,4 +1,4 @@
-library mi_country_picker;
+library swiper_country_picker;
 
 export 'src/country_picker_localizations.dart';
 export 'src/country_picker_dropdown.dart';

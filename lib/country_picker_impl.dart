@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mi_country_picker/src/codes.dart';
-import 'package:mi_country_picker/src/country_selection_bottom.dart';
-import 'package:mi_country_picker/src/country_selection_dialog.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
+import 'package:swiper_country_picker/src/codes.dart';
+import 'package:swiper_country_picker/src/country_selection_bottom.dart';
+import 'package:swiper_country_picker/src/country_selection_dialog.dart';
 
 import 'src/country_picker_cupertino_bottom_sheet.dart';
-import 'mi_country_picker.dart';
 
 class CountryPicker {
   static Future<CountryData?> showCountryPickerDialog({

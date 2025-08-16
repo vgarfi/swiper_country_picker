@@ -16,7 +16,7 @@ class CountryPickerLocalizations {
   late Map<String, String> _localizedStrings;
   Future<bool> load() async {
     String jsonString = await rootBundle.loadString(
-        'packages/mi_country_picker/src/i18n/${locale.languageCode}.json');
+        'packages/swiper_country_picker/src/i18n/${locale.languageCode}.json');
     Map<String, dynamic> jsonMap = json.decode(jsonString);
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());

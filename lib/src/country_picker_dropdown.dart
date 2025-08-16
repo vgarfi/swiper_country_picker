@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mi_country_picker/src/codes.dart';
-
-import '../mi_country_picker.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
+import 'package:swiper_country_picker/src/codes.dart';
 
 class CountryPickerDropDown extends StatefulWidget {
   final Color? backGroundColor;
@@ -182,7 +181,7 @@ class _CountryPickerDropDownState extends State<CountryPickerDropDown> {
                                   : Clip.hardEdge,
                           child: Image.asset(
                             e.flagUri!,
-                            package: 'mi_country_picker',
+                            package: 'swiper_country_picker',
                             width: widget.layoutConfig?.flagWidth ?? 24,
                             height: widget.layoutConfig?.flagHeight ?? 18,
                             fit: BoxFit.cover,
@@ -268,7 +267,7 @@ class _CountryPickerDropDownState extends State<CountryPickerDropDown> {
                                   : Clip.hardEdge,
                           child: Image.asset(
                             e.flagUri!,
-                            package: 'mi_country_picker',
+                            package: 'swiper_country_picker',
                             width: widget.layoutConfig?.flagWidth ?? 28,
                             height: widget.layoutConfig?.flagHeight ?? 18,
                             fit: BoxFit.cover,

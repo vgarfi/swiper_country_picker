@@ -1,8 +1,9 @@
-import 'package:mi_country_picker/mi_country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mi_country_picker/src/codes.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
+
+import 'package:swiper_country_picker/src/codes.dart';
 
 class CountryPickerCupertinoBottomSheet extends StatefulWidget {
   final CountryData? setInitialValue;
@@ -180,7 +181,7 @@ class CountryPickerCupertinoBottomSheetState
                                       : Clip.hardEdge,
                               child: Image.asset(
                                 countriesElements[index].flagUri!,
-                                package: 'mi_country_picker',
+                                package: 'swiper_country_picker',
                                 width: widget.layoutConfig?.flagWidth ?? 24,
                                 height: widget.layoutConfig?.flagHeight ?? 18,
                                 fit: BoxFit.cover,
@@ -256,7 +257,7 @@ class CountryPickerCupertinoBottomSheetState
                                       : Clip.hardEdge,
                               child: Image.asset(
                                 countriesElements[index].flagUri!,
-                                package: 'mi_country_picker',
+                                package: 'swiper_country_picker',
                                 width: widget.layoutConfig?.flagWidth ?? 28,
                                 height: widget.layoutConfig?.flagHeight ?? 18,
                                 fit: BoxFit.cover,

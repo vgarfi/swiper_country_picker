@@ -1,4 +1,4 @@
-# mi_country_picker
+# swiper_country_picker
 
 <a href="https://developer.android.com" style="pointer-events: stroke;" target="_blank">
 <img src="https://img.shields.io/badge/platform-android-blue">
@@ -127,7 +127,7 @@ It would be great for us if the reporter could share the below things to underst
 - Screenshot/video with steps to reproduce the issue
 
 # LICENSE!
-mi_country_picker is [MIT-licensed](https://github.com/Mindinventory/mi_country_picker/blob/main/LICENSE).
+swiper_country_picker is [MIT-licensed](https://github.com/Mindinventory/swiper_country_picker/blob/main/LICENSE).
 
 # Let us know!
 

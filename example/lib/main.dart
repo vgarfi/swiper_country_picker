@@ -1,4 +1,4 @@
-import 'package:mi_country_picker/mi_country_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -14,93 +14,9 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          dividerColor: Colors.transparent,
-          cardTheme: const CardTheme(color: Colors.white),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                  textStyle: const TextStyle(color: Colors.black)))),
-      supportedLocales: const [
-        Locale("af"),
-        Locale("am"),
-        Locale("ar"),
-        Locale("az"),
-        Locale("be"),
-        Locale("bg"),
-        Locale("bn"),
-        Locale("bs"),
-        Locale("ca"),
-        Locale("cs"),
-        Locale("da"),
-        Locale("de"),
-        Locale("el"),
-        Locale("en"),
-        Locale("es"),
-        Locale("et"),
-        Locale("fa"),
-        Locale("fi"),
-        Locale("fr"),
-        Locale("gl"),
-        Locale("ha"),
-        Locale("he"),
-        Locale("hi"),
-        Locale("hr"),
-        Locale("hu"),
-        Locale("hy"),
-        Locale("id"),
-        Locale("is"),
-        Locale("it"),
-        Locale("ja"),
-        Locale("ka"),
-        Locale("kk"),
-        Locale("km"),
-        Locale("ko"),
-        Locale("ku"),
-        Locale("ky"),
-        Locale("lt"),
-        Locale("lv"),
-        Locale("mk"),
-        Locale("ml"),
-        Locale("mn"),
-        Locale("ms"),
-        Locale("nb"),
-        Locale("nl"),
-        Locale("nn"),
-        Locale("no"),
-        Locale("pl"),
-        Locale("ps"),
-        Locale("pt"),
-        Locale("ro"),
-        Locale("ru"),
-        Locale("sd"),
-        Locale("sk"),
-        Locale("sl"),
-        Locale("so"),
-        Locale("sq"),
-        Locale("sr"),
-        Locale("sv"),
-        Locale("ta"),
-        Locale("tg"),
-        Locale("th"),
-        Locale("tk"),
-        Locale("tr"),
-        Locale("tt"),
-        Locale("uk"),
-        Locale("ug"),
-        Locale("ur"),
-        Locale("uz"),
-        Locale("vi"),
-        Locale("zh")
-      ],
-      localizationsDelegates: [
-        CountryPickerLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
@@ -113,42 +29,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextStyle get _defaultTextStyle => const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      );
-
-  Widget title({String? title}) {
-    return Text(
-      title ?? "",
-      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-    );
-  }
-
-  CountryData? initialDialogDefaultValue;
-  CountryData? initialDialogCustomValue;
-  CountryData? initialBottomDefaultValue;
-  CountryData? initialBottomCustomValue;
-  CountryData? initialCupertinoBottomDefaultValue;
-  CountryData? initialCupertinoBottomCustomValue;
-
-  @override
-  void didChangeDependencies() {
-    initialDialogDefaultValue =
-        CountryPicker.getCountryData(context: context, code: "IN");
-    initialDialogCustomValue =
-        CountryPicker.getCountryData(context: context, code: "ID");
-    initialBottomDefaultValue =
-        CountryPicker.getCountryData(context: context, code: "IN");
-    initialBottomCustomValue =
-        CountryPicker.getCountryData(context: context, code: "IS");
-    initialCupertinoBottomDefaultValue =
-        CountryPicker.getCountryData(context: context, code: "IN");
-    initialCupertinoBottomCustomValue =
-        CountryPicker.getCountryData(context: context, code: "UY");
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,386 +39,442 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: <Widget>[
-              Card(
-                child: ExpansionTile(
-                  expandedCrossAxisAlignment: CrossAxisAlignment.center,
-                  collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                  initiallyExpanded: true,
-                  title: Text(
-                    'Country picker using dialog',
-                    style: _defaultTextStyle,
-                  ),
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 16, bottom: 5),
-                            child: Column(
-                              children: [
-                                title(title: "Default"),
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    CountryPicker.showCountryPickerDialog(
-                                      context: context,
-                                      layoutConfig: const LayoutConfig(
-                                          elementsSequence:
-                                              Sequence.flagCodeAndCountryName),
-                                    ).then(
-                                      (value) {
-                                        if (value != null) {
-                                          initialDialogDefaultValue = value;
-                                          debugPrint(
-                                              'showCountryPickerDialog default ::${initialDialogDefaultValue?.name}');
-                                          setState(() {});
-                                        }
-                                      },
-                                    );
-                                  },
-                                  child: ButtonRowWidget(
-                                    dialCode:
-                                        initialDialogDefaultValue?.dialCode,
-                                    flagUri: initialDialogDefaultValue?.flagUri,
-                                    name: initialDialogDefaultValue?.name,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            width: double.maxFinite,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 16, bottom: 5),
-                              child: Column(
-                                children: [
-                                  title(title: "Custom"),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      CountryPicker.showCountryPickerDialog(
-                                        size: const Size(250, 550),
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(25),
-                                        ),
-                                        context: context,
-                                        favouriteCountries: ["+91", "+355"],
-                                        layoutConfig: const LayoutConfig(
-                                            flagWidth: 24,
-                                            flagHeight: 24,
-                                            elementsSequence:
-                                                Sequence.codeCountryNameAndFlag,
-                                            flagDecoration: BoxDecoration(
-                                                shape: BoxShape.circle)),
-                                      ).then(
-                                        (value) {
-                                          if (value != null) {
-                                            initialDialogCustomValue = value;
-                                            debugPrint(
-                                                'showCountryPickerDialog custom ::${initialDialogCustomValue?.name}');
-                                            setState(() {});
-                                          }
-                                        },
-                                      );
-                                    },
-                                    child: ButtonRowWidget(
-                                      dialCode:
-                                          initialDialogCustomValue?.dialCode,
-                                      flagUri:
-                                          initialDialogCustomValue?.flagUri,
-                                      name: initialDialogCustomValue?.name,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Card(
-                child: ExpansionTile(
-                  title: Text(
-                    'Country picker using bottom sheet',
-                    style: _defaultTextStyle,
-                  ),
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 16, bottom: 5),
-                            child: Column(
-                              children: [
-                                title(title: "Default"),
-                                ElevatedButton(
-                                  onPressed: () => CountryPicker
-                                      .showCountryPickerBottomSheet(
-                                    favouriteCountries: ["India"],
-                                    layoutConfig: const LayoutConfig(
-                                        elementsSequence:
-                                            Sequence.flagCodeAndCountryName),
-                                    context: context,
-                                  ).then((value) {
-                                    if (value != null) {
-                                      initialBottomDefaultValue = value;
-                                      debugPrint(
-                                          'showCountryPickerBottom :: ${initialBottomDefaultValue?.name}');
-                                      setState(() {});
-                                    }
-                                  }),
-                                  child: ButtonRowWidget(
-                                    dialCode:
-                                        initialBottomDefaultValue?.dialCode,
-                                    flagUri: initialBottomDefaultValue?.flagUri,
-                                    name: initialBottomDefaultValue?.name,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            width: double.maxFinite,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 16, bottom: 10),
-                              child: Column(
-                                children: [
-                                  title(title: "Custom"),
-                                  ElevatedButton(
-                                    onPressed: () => CountryPicker
-                                        .showCountryPickerBottomSheet(
-                                      countryListConfig: CountryListConfig(),
-                                      showDragHandle: true,
-                                      context: context,
-                                      favouriteCountries: ["+91", "+376"],
-                                      layoutConfig: const LayoutConfig(
-                                        flagWidth: 24,
-                                        flagHeight: 24,
-                                        elementsSequence:
-                                            Sequence.codeCountryNameAndFlag,
-                                        flagDecoration: BoxDecoration(
-                                            shape: BoxShape.circle),
-                                      ),
-                                    ).then((value) {
-                                      if (value != null) {
-                                        initialBottomCustomValue = value;
-                                        debugPrint(
-                                            'showCountryPickerBottom :: ${initialBottomCustomValue?.name}');
-                                        setState(() {});
-                                      }
-                                    }),
-                                    child: ButtonRowWidget(
-                                      name: initialBottomCustomValue?.name,
-                                      flagUri:
-                                          initialBottomCustomValue?.flagUri,
-                                      dialCode:
-                                          initialBottomCustomValue?.dialCode,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Card(
-                child: ExpansionTile(
-                  title: Text(
-                    'Country picker using cupertino bottom sheet',
-                    style: _defaultTextStyle,
-                  ),
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 16, bottom: 5),
-                            child: Column(
-                              children: [
-                                title(title: "Default"),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    CountryPicker
-                                        .showCountryPickerCupertinoBottomSheet(
-                                      context: context,
-                                      setInitialValue:
-                                          initialCupertinoBottomDefaultValue,
-                                    ).then(
-                                      (value) {
-                                        if (value != null) {
-                                          initialCupertinoBottomDefaultValue =
-                                              value;
-                                          debugPrint(
-                                              'showCountryPickerCupertinoBottom :: ${initialCupertinoBottomDefaultValue?.name ?? ""}');
-                                          setState(() {});
-                                        }
-                                      },
-                                    );
-                                  },
-                                  child: ButtonRowWidget(
-                                    dialCode: initialCupertinoBottomDefaultValue
-                                        ?.dialCode,
-                                    flagUri: initialCupertinoBottomDefaultValue
-                                        ?.flagUri,
-                                    name: initialCupertinoBottomDefaultValue
-                                        ?.name,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            width: double.maxFinite,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 16, bottom: 5),
-                              child: Column(
-                                children: [
-                                  title(title: "Custom"),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      CountryPicker
-                                          .showCountryPickerCupertinoBottomSheet(
-                                        setInitialValue:
-                                            initialCupertinoBottomCustomValue,
-                                        isScrollControlled: true,
-                                        context: context,
-                                        diameterRatio: 0.8,
-                                        layoutConfig: const LayoutConfig(
-                                          flagWidth: 24,
-                                          flagHeight: 24,
-                                          elementsSequence:
-                                              Sequence.codeCountryNameAndFlag,
-                                          flagDecoration: BoxDecoration(
-                                              shape: BoxShape.circle),
-                                        ),
-                                      ).then(
-                                        (value) {
-                                          if (value != null) {
-                                            initialCupertinoBottomCustomValue =
-                                                value;
-                                            debugPrint(
-                                                'showCountryPickerCupertinoBottom :: ${initialCupertinoBottomCustomValue?.name ?? ""}');
-                                            setState(() {});
-                                          }
-                                        },
-                                      );
-                                    },
-                                    child: ButtonRowWidget(
-                                      dialCode:
-                                          initialCupertinoBottomCustomValue
-                                              ?.dialCode,
-                                      flagUri: initialCupertinoBottomCustomValue
-                                          ?.flagUri,
-                                      name: initialCupertinoBottomCustomValue
-                                          ?.name,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Card(
-                child: ExpansionTile(
-                  title: Text('Country picker using drop down',
-                      style: _defaultTextStyle),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, bottom: 15),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.32,
-                        child: CountryPickerDropDown(
-                          underline: const SizedBox.shrink(),
-                          layoutConfig: const LayoutConfig(
-                            showCountryName: false,
-                            showCountryCode: true,
-                            showCountryFlag: true,
-                            flagDecoration:
-                                BoxDecoration(shape: BoxShape.circle),
-                            flagWidth: 18,
-                            flagHeight: 18,
-                            elementsSequence: Sequence.flagCodeAndCountryName,
-                          ),
-                          onSelectValue: (CountryData value) {
-                            debugPrint('CountryPickerDropDown ::${value.name}');
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+      body: const Center(
+        child: Text(
+          'Welcome to the Country Picker Example for Swiper :)',
         ),
       ),
     );
   }
 }
 
-// common elevated child widget...
-class ButtonRowWidget extends StatelessWidget {
-  const ButtonRowWidget({
-    super.key,
-    this.flagUri,
-    this.dialCode,
-    this.name,
-  });
+// class _HomePageState extends State<HomePage> {
+//   TextStyle get _defaultTextStyle => const TextStyle(
+//         fontSize: 16,
+//         fontWeight: FontWeight.bold,
+//       );
 
-  final String? flagUri;
-  final String? dialCode;
-  final String? name;
+//   Widget title({String? title}) {
+//     return Text(
+//       title ?? "",
+//       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+//     );
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          width: 24,
-          height: 18,
-          flagUri ?? "",
-          package: "mi_country_picker",
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Flexible(
-          child: Text(
-            "${dialCode ?? ""} ${name ?? ""}",
-            overflow: TextOverflow.visible,
-            style: const TextStyle(color: Colors.black),
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   CountryData? initialDialogDefaultValue;
+//   CountryData? initialDialogCustomValue;
+//   CountryData? initialBottomDefaultValue;
+//   CountryData? initialBottomCustomValue;
+//   CountryData? initialCupertinoBottomDefaultValue;
+//   CountryData? initialCupertinoBottomCustomValue;
+
+//   @override
+//   void didChangeDependencies() {
+//     initialDialogDefaultValue =
+//         CountryPicker.getCountryData(context: context, code: "IN");
+//     initialDialogCustomValue =
+//         CountryPicker.getCountryData(context: context, code: "ID");
+//     initialBottomDefaultValue =
+//         CountryPicker.getCountryData(context: context, code: "IN");
+//     initialBottomCustomValue =
+//         CountryPicker.getCountryData(context: context, code: "IS");
+//     initialCupertinoBottomDefaultValue =
+//         CountryPicker.getCountryData(context: context, code: "IN");
+//     initialCupertinoBottomCustomValue =
+//         CountryPicker.getCountryData(context: context, code: "UY");
+//     super.didChangeDependencies();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         surfaceTintColor: Colors.transparent,
+//         title: const Text(
+//           'Country Picker',
+//           style: TextStyle(fontWeight: FontWeight.bold),
+//         ),
+//       ),
+//       body: SingleChildScrollView(
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+//           child: Wrap(
+//             spacing: 12,
+//             runSpacing: 12,
+//             children: <Widget>[
+//               Card(
+//                 child: ExpansionTile(
+//                   expandedCrossAxisAlignment: CrossAxisAlignment.center,
+//                   collapsedShape: const RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.all(Radius.circular(8.0))),
+//                   initiallyExpanded: true,
+//                   title: Text(
+//                     'Country picker using dialog',
+//                     style: _defaultTextStyle,
+//                   ),
+//                   children: [
+//                     Row(
+//                       children: [
+//                         Expanded(
+//                           child: Padding(
+//                             padding: const EdgeInsets.only(top: 16, bottom: 5),
+//                             child: Column(
+//                               children: [
+//                                 title(title: "Default"),
+//                                 ElevatedButton(
+//                                   onPressed: () async {
+//                                     CountryPicker.showCountryPickerDialog(
+//                                       context: context,
+//                                       layoutConfig: const LayoutConfig(
+//                                           elementsSequence:
+//                                               Sequence.flagCodeAndCountryName),
+//                                     ).then(
+//                                       (value) {
+//                                         if (value != null) {
+//                                           initialDialogDefaultValue = value;
+//                                           debugPrint(
+//                                               'showCountryPickerDialog default ::${initialDialogDefaultValue?.name}');
+//                                           setState(() {});
+//                                         }
+//                                       },
+//                                     );
+//                                   },
+//                                   child: ButtonRowWidget(
+//                                     dialCode:
+//                                         initialDialogDefaultValue?.dialCode,
+//                                     flagUri: initialDialogDefaultValue?.flagUri,
+//                                     name: initialDialogDefaultValue?.name,
+//                                   ),
+//                                 )
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                         Expanded(
+//                           child: SizedBox(
+//                             width: double.maxFinite,
+//                             child: Padding(
+//                               padding:
+//                                   const EdgeInsets.only(top: 16, bottom: 5),
+//                               child: Column(
+//                                 children: [
+//                                   title(title: "Custom"),
+//                                   ElevatedButton(
+//                                     onPressed: () {
+//                                       CountryPicker.showCountryPickerDialog(
+//                                         size: const Size(250, 550),
+//                                         borderRadius: const BorderRadius.all(
+//                                           Radius.circular(25),
+//                                         ),
+//                                         context: context,
+//                                         favouriteCountries: ["+91", "+355"],
+//                                         layoutConfig: const LayoutConfig(
+//                                             flagWidth: 24,
+//                                             flagHeight: 24,
+//                                             elementsSequence:
+//                                                 Sequence.codeCountryNameAndFlag,
+//                                             flagDecoration: BoxDecoration(
+//                                                 shape: BoxShape.circle)),
+//                                       ).then(
+//                                         (value) {
+//                                           if (value != null) {
+//                                             initialDialogCustomValue = value;
+//                                             debugPrint(
+//                                                 'showCountryPickerDialog custom ::${initialDialogCustomValue?.name}');
+//                                             setState(() {});
+//                                           }
+//                                         },
+//                                       );
+//                                     },
+//                                     child: ButtonRowWidget(
+//                                       dialCode:
+//                                           initialDialogCustomValue?.dialCode,
+//                                       flagUri:
+//                                           initialDialogCustomValue?.flagUri,
+//                                       name: initialDialogCustomValue?.name,
+//                                     ),
+//                                   )
+//                                 ],
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//               Card(
+//                 child: ExpansionTile(
+//                   title: Text(
+//                     'Country picker using bottom sheet',
+//                     style: _defaultTextStyle,
+//                   ),
+//                   children: [
+//                     Row(
+//                       children: [
+//                         Expanded(
+//                           child: Padding(
+//                             padding: const EdgeInsets.only(top: 16, bottom: 5),
+//                             child: Column(
+//                               children: [
+//                                 title(title: "Default"),
+//                                 ElevatedButton(
+//                                   onPressed: () => CountryPicker
+//                                       .showCountryPickerBottomSheet(
+//                                     favouriteCountries: ["India"],
+//                                     layoutConfig: const LayoutConfig(
+//                                         elementsSequence:
+//                                             Sequence.flagCodeAndCountryName),
+//                                     context: context,
+//                                   ).then((value) {
+//                                     if (value != null) {
+//                                       initialBottomDefaultValue = value;
+//                                       debugPrint(
+//                                           'showCountryPickerBottom :: ${initialBottomDefaultValue?.name}');
+//                                       setState(() {});
+//                                     }
+//                                   }),
+//                                   child: ButtonRowWidget(
+//                                     dialCode:
+//                                         initialBottomDefaultValue?.dialCode,
+//                                     flagUri: initialBottomDefaultValue?.flagUri,
+//                                     name: initialBottomDefaultValue?.name,
+//                                   ),
+//                                 )
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                         Expanded(
+//                           child: SizedBox(
+//                             width: double.maxFinite,
+//                             child: Padding(
+//                               padding:
+//                                   const EdgeInsets.only(top: 16, bottom: 10),
+//                               child: Column(
+//                                 children: [
+//                                   title(title: "Custom"),
+//                                   ElevatedButton(
+//                                     onPressed: () => CountryPicker
+//                                         .showCountryPickerBottomSheet(
+//                                       countryListConfig: CountryListConfig(),
+//                                       showDragHandle: true,
+//                                       context: context,
+//                                       favouriteCountries: ["+91", "+376"],
+//                                       layoutConfig: const LayoutConfig(
+//                                         flagWidth: 24,
+//                                         flagHeight: 24,
+//                                         elementsSequence:
+//                                             Sequence.codeCountryNameAndFlag,
+//                                         flagDecoration: BoxDecoration(
+//                                             shape: BoxShape.circle),
+//                                       ),
+//                                     ).then((value) {
+//                                       if (value != null) {
+//                                         initialBottomCustomValue = value;
+//                                         debugPrint(
+//                                             'showCountryPickerBottom :: ${initialBottomCustomValue?.name}');
+//                                         setState(() {});
+//                                       }
+//                                     }),
+//                                     child: ButtonRowWidget(
+//                                       name: initialBottomCustomValue?.name,
+//                                       flagUri:
+//                                           initialBottomCustomValue?.flagUri,
+//                                       dialCode:
+//                                           initialBottomCustomValue?.dialCode,
+//                                     ),
+//                                   )
+//                                 ],
+//                               ),
+//                             ),
+//                           ),
+//                         )
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//               Card(
+//                 child: ExpansionTile(
+//                   title: Text(
+//                     'Country picker using cupertino bottom sheet',
+//                     style: _defaultTextStyle,
+//                   ),
+//                   children: [
+//                     Row(
+//                       children: [
+//                         Expanded(
+//                           child: Padding(
+//                             padding: const EdgeInsets.only(top: 16, bottom: 5),
+//                             child: Column(
+//                               children: [
+//                                 title(title: "Default"),
+//                                 ElevatedButton(
+//                                   onPressed: () {
+//                                     CountryPicker
+//                                         .showCountryPickerCupertinoBottomSheet(
+//                                       context: context,
+//                                       setInitialValue:
+//                                           initialCupertinoBottomDefaultValue,
+//                                     ).then(
+//                                       (value) {
+//                                         if (value != null) {
+//                                           initialCupertinoBottomDefaultValue =
+//                                               value;
+//                                           debugPrint(
+//                                               'showCountryPickerCupertinoBottom :: ${initialCupertinoBottomDefaultValue?.name ?? ""}');
+//                                           setState(() {});
+//                                         }
+//                                       },
+//                                     );
+//                                   },
+//                                   child: ButtonRowWidget(
+//                                     dialCode: initialCupertinoBottomDefaultValue
+//                                         ?.dialCode,
+//                                     flagUri: initialCupertinoBottomDefaultValue
+//                                         ?.flagUri,
+//                                     name: initialCupertinoBottomDefaultValue
+//                                         ?.name,
+//                                   ),
+//                                 )
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                         Expanded(
+//                           child: SizedBox(
+//                             width: double.maxFinite,
+//                             child: Padding(
+//                               padding:
+//                                   const EdgeInsets.only(top: 16, bottom: 5),
+//                               child: Column(
+//                                 children: [
+//                                   title(title: "Custom"),
+//                                   ElevatedButton(
+//                                     onPressed: () {
+//                                       CountryPicker
+//                                           .showCountryPickerCupertinoBottomSheet(
+//                                         setInitialValue:
+//                                             initialCupertinoBottomCustomValue,
+//                                         isScrollControlled: true,
+//                                         context: context,
+//                                         diameterRatio: 0.8,
+//                                         layoutConfig: const LayoutConfig(
+//                                           flagWidth: 24,
+//                                           flagHeight: 24,
+//                                           elementsSequence:
+//                                               Sequence.codeCountryNameAndFlag,
+//                                           flagDecoration: BoxDecoration(
+//                                               shape: BoxShape.circle),
+//                                         ),
+//                                       ).then(
+//                                         (value) {
+//                                           if (value != null) {
+//                                             initialCupertinoBottomCustomValue =
+//                                                 value;
+//                                             debugPrint(
+//                                                 'showCountryPickerCupertinoBottom :: ${initialCupertinoBottomCustomValue?.name ?? ""}');
+//                                             setState(() {});
+//                                           }
+//                                         },
+//                                       );
+//                                     },
+//                                     child: ButtonRowWidget(
+//                                       dialCode:
+//                                           initialCupertinoBottomCustomValue
+//                                               ?.dialCode,
+//                                       flagUri: initialCupertinoBottomCustomValue
+//                                           ?.flagUri,
+//                                       name: initialCupertinoBottomCustomValue
+//                                           ?.name,
+//                                     ),
+//                                   ),
+//                                 ],
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//               Card(
+//                 child: ExpansionTile(
+//                   title: Text('Country picker using drop down',
+//                       style: _defaultTextStyle),
+//                   children: [
+//                     Padding(
+//                       padding: const EdgeInsets.only(top: 5, bottom: 15),
+//                       child: SizedBox(
+//                         width: MediaQuery.of(context).size.width * 0.32,
+//                         child: CountryPickerDropDown(
+//                           underline: const SizedBox.shrink(),
+//                           layoutConfig: const LayoutConfig(
+//                             showCountryName: false,
+//                             showCountryCode: true,
+//                             showCountryFlag: true,
+//                             flagDecoration:
+//                                 BoxDecoration(shape: BoxShape.circle),
+//                             flagWidth: 18,
+//                             flagHeight: 18,
+//                             elementsSequence: Sequence.flagCodeAndCountryName,
+//                           ),
+//                           onSelectValue: (CountryData value) {
+//                             debugPrint('CountryPickerDropDown ::${value.name}');
+//                           },
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// // common elevated child widget...
+// class ButtonRowWidget extends StatelessWidget {
+//   const ButtonRowWidget({
+//     super.key,
+//     this.flagUri,
+//     this.dialCode,
+//     this.name,
+//   });
+
+//   final String? flagUri;
+//   final String? dialCode;
+//   final String? name;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisSize: MainAxisSize.min,
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Image.asset(
+//           width: 24,
+//           height: 18,
+//           flagUri ?? "",
+//           package: "swiper_country_picker",
+//         ),
+//         const SizedBox(
+//           width: 10,
+//         ),
+//         Flexible(
+//           child: Text(
+//             "${dialCode ?? ""} ${name ?? ""}",
+//             overflow: TextOverflow.visible,
+//             style: const TextStyle(color: Colors.black),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }

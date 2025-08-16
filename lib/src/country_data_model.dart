@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mi_country_picker/mi_country_picker.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
 
 mixin ToAlias {}
 

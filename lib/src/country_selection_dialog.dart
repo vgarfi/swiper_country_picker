@@ -1,6 +1,6 @@
-import 'package:mi_country_picker/mi_country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:mi_country_picker/src/codes.dart';
+import 'package:swiper_country_picker/mi_country_picker.dart';
+import 'package:swiper_country_picker/src/codes.dart';
 
 class CountrySelectionDialog extends StatefulWidget {
   /// it is optional argument to set your own custom country list
@@ -184,7 +184,7 @@ class _CountrySelectionDialogState extends State<CountrySelectionDialog> {
                             Image.asset(
                               color: Colors.grey.shade400,
                               'lib/assets/icons/search.png',
-                              package: 'mi_country_picker',
+                              package: 'swiper_country_picker',
                             ),
                       ),
                       hintText: widget.searchStyle?.hintText ?? "Search",
@@ -278,7 +278,7 @@ class _CountrySelectionDialogState extends State<CountrySelectionDialog> {
                     : Clip.hardEdge,
                 child: Image.asset(
                   e.flagUri!,
-                  package: 'mi_country_picker',
+                  package: 'swiper_country_picker',
                   width: widget.layoutConfig?.flagWidth ?? 24,
                   height: widget.layoutConfig?.flagHeight ?? 18,
                   fit: BoxFit.cover,
@@ -345,7 +345,7 @@ class _CountrySelectionDialogState extends State<CountrySelectionDialog> {
                     : Clip.hardEdge,
                 child: Image.asset(
                   e.flagUri!,
-                  package: 'mi_country_picker',
+                  package: 'swiper_country_picker',
                   width: widget.layoutConfig?.flagWidth ?? 28,
                   height: widget.layoutConfig?.flagHeight ?? 18,
                   fit: BoxFit.cover,
